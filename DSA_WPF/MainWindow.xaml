@@ -1,0 +1,57 @@
+﻿<Window x:Class="DSA_WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DSA_WPF"
+        mc:Ignorable="d"
+        Title="DSA" Height="420" Width="1000"
+        MinHeight="420" MinWidth="600"
+        WindowStartupLocation="CenterScreen"
+        FontFamily="JetBrains Mono" FontSize="16">
+    
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" MinWidth="200"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*" MinWidth="200"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="0">
+
+            <Label Content="Input" HorizontalAlignment="Center"></Label>
+
+            <local:UInput Hint="q" x:Name="QField" Text="593"></local:UInput>
+            <local:UInput Hint="p" x:Name="PField" Text="3559"></local:UInput>
+            <local:UInput Hint="h" x:Name="HField" Text="3"></local:UInput>
+            <local:UInput Hint="x" x:Name="XField" Text="17"></local:UInput>
+            <local:UInput Hint="k" x:Name="KField" Text="23"></local:UInput>
+
+            <local:UInput Hint="File Path" x:Name="FilePathLabel"></local:UInput>
+
+            <Border Margin="10" Width="10" Background="Blue"/>
+
+            <Button Margin="3" x:Name="FileChoosingButton" Click="FileChoosingButton_OnClick">Choose file</Button>
+            <Button Margin="3" x:Name="CreateButton" Click="CreateButton_OnClick">Create signature</Button>
+            <Button Margin="3" x:Name="CheckButton" Click="CheckButton_OnClick">Check signature</Button>
+
+        </StackPanel>
+
+        <GridSplitter Grid.Column="1" Width="2" HorizontalAlignment="Stretch" Background="BlueViolet"/>
+
+        <StackPanel Grid.Column="2">
+
+            <Label Content="Output" HorizontalAlignment="Center"></Label>
+
+            <local:UInput Hint="Hash" x:Name="HashLabel"></local:UInput>
+            <local:UInput Hint="r" x:Name="RLabel"></local:UInput>
+            <local:UInput Hint="s" x:Name="SLabel"></local:UInput>
+
+            <Label Margin="3 30" x:Name="StatusLabel"></Label>
+
+        </StackPanel>
+
+    </Grid>
+
+</Window>

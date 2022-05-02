@@ -1,0 +1,19 @@
+﻿<UserControl x:Class="DSA_WPF.UInput"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DSA_WPF"
+             mc:Ignorable="d" 
+             d:DesignHeight="50" d:DesignWidth="400"
+             DataContext="{Binding RelativeSource={RelativeSource Self}}">
+    <Grid Margin="3">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Label Grid.Column="0" Margin="0 0 3 0" Content="{Binding Hint}"></Label>
+        <TextBox Grid.Column="1" Text="{Binding Text}" VerticalAlignment="Center" Background="AliceBlue"></TextBox>
+    </Grid>
+</UserControl>

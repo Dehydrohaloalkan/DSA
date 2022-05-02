@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32407.343
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DSA", "DSA\DSA.csproj", "{C144C2D1-0F9C-46D0-9430-AD41F4B382F7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DSA_WPF", "DSA_WPF\DSA_WPF.csproj", "{07A88806-F89C-40C1-B989-96B511290587}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C144C2D1-0F9C-46D0-9430-AD41F4B382F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C144C2D1-0F9C-46D0-9430-AD41F4B382F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C144C2D1-0F9C-46D0-9430-AD41F4B382F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C144C2D1-0F9C-46D0-9430-AD41F4B382F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07A88806-F89C-40C1-B989-96B511290587}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07A88806-F89C-40C1-B989-96B511290587}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07A88806-F89C-40C1-B989-96B511290587}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07A88806-F89C-40C1-B989-96B511290587}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {34CDDBE9-8C8D-4FB1-BC97-FAE17EC21EA4}
+	EndGlobalSection
+EndGlobal
