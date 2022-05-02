@@ -20,7 +20,7 @@
 
         <StackPanel Grid.Column="0">
 
-            <Label Content="Input" HorizontalAlignment="Center"></Label>
+            <Label Content="Входные данные" HorizontalAlignment="Center"></Label>
 
             <local:UInput Hint="q" x:Name="QField" Text="593"></local:UInput>
             <local:UInput Hint="p" x:Name="PField" Text="3559"></local:UInput>
@@ -32,9 +32,9 @@
 
             <Border Margin="10" Width="10" Background="Blue"/>
 
-            <Button Margin="3" x:Name="FileChoosingButton" Click="FileChoosingButton_OnClick">Choose file</Button>
-            <Button Margin="3" x:Name="CreateButton" Click="CreateButton_OnClick">Create signature</Button>
-            <Button Margin="3" x:Name="CheckButton" Click="CheckButton_OnClick">Check signature</Button>
+            <Button Margin="3" x:Name="FileChoosingButton" Click="FileChoosingButton_OnClick">Выбрать файл</Button>
+            <Button Margin="3" x:Name="CreateButton" Click="CreateButton_OnClick">Создать подпись</Button>
+            <Button Margin="3" x:Name="CheckButton" Click="CheckButton_OnClick">Проверить подпись</Button>
 
         </StackPanel>
 
@@ -42,7 +42,7 @@
 
         <StackPanel Grid.Column="2">
 
-            <Label Content="Output" HorizontalAlignment="Center"></Label>
+            <Label Content="Выходные данные" HorizontalAlignment="Center"></Label>
 
             <local:UInput Hint="Hash" x:Name="HashLabel"></local:UInput>
             <local:UInput Hint="r" x:Name="RLabel"></local:UInput>
