@@ -5,19 +5,23 @@ namespace DSA
 {
     public static class TextAnalyzer
     {
+        private static byte[] GetBytes(string text) => Encoding.UTF8.GetBytes(text);
+        private static string GetString(byte[] data) => Encoding.UTF8.GetString(data);
+        
+
         public static byte[] Concatenate(byte[] data, int r, int s)
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append(Encoding.ASCII.GetString(data));
+            sb.Append(GetString(data));
             sb.Append($"\nr : {r}, s : {s};\n");
-            return Encoding.ASCII.GetBytes(sb.ToString());
+            return GetBytes(sb.ToString());
         }
 
         public static (byte[] message, int r, int s) Analyze(byte[] data)
         {
             const string pattern = "\\nr : [0-9]+, s : [0-9]+;\\n";
 
-            var messageText = Encoding.ASCII.GetString(data);
+            var messageText = GetString(data);
 
             var rsString = Regex.Matches(messageText, pattern).Last().ToString();
             
@@ -30,7 +34,7 @@ namespace DSA
 
             var newMessage = Regex.Replace(messageText, pattern, string.Empty);
 
-            return (Encoding.ASCII.GetBytes(newMessage), r, s);
+            return (GetBytes(newMessage), r, s);
         }
     }
 }
