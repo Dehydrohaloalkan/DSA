@@ -32,7 +32,7 @@ namespace DSA
             if (G <= 1)
                 throw new LogicException("h образует g меньше или равное 1");
 
-            if (x <= 1 || x >= q)
+            if (x <= 0 || x >= q)
                 throw new LogicException("x должно быть в интервале от 0 до q");
             X = x;
 
