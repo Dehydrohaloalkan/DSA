@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
+using System.Numerics;
 using System.Windows;
-using System.Windows.Input;
 using System.Windows.Media;
 using DSA;
 using Microsoft.Win32;
@@ -40,8 +40,8 @@ namespace DSA_WPF
             try
             {
                 byte[] message = File.ReadAllBytes(_filePath);
-                var sc = new SignatureCreator(int.Parse(QField.Text), int.Parse(PField.Text), int.Parse(HField.Text),
-                    int.Parse(XField.Text));
+                var sc = new SignatureCreator(BigInteger.Parse(QField.Text), BigInteger.Parse(PField.Text), BigInteger.Parse(HField.Text),
+                    BigInteger.Parse(XField.Text));
                 var (data, hash, r, s) = sc.Create(message, int.Parse(KField.Text));
 
                 HashLabel.Text = hash.ToString();
@@ -55,22 +55,18 @@ namespace DSA_WPF
             catch (LogicException exception)
             {
                 MessageBox.Show(exception.Message);
-                return;
             }
             catch (ArgumentNullException exception)
             {
                 MessageBox.Show("Все поля должны быть заполнены");
-                return;
             }
             catch (FormatException exception)
             {
                 MessageBox.Show("Значения должны быть числами");
-                return;
             }
             catch (Exception exception)
             {
                 MessageBox.Show($"Что-то пошло не так, {exception.GetType()}");
-                return;
             }
         }
 
@@ -83,8 +79,9 @@ namespace DSA_WPF
             try
             {
                 byte[] message = File.ReadAllBytes(_filePath);
-                var sc = new SignatureCreator(int.Parse(QField.Text), int.Parse(PField.Text), int.Parse(HField.Text),
-                    int.Parse(XField.Text));
+                var sc = new SignatureCreator(BigInteger.Parse(QField.Text), BigInteger.Parse(PField.Text),
+                    BigInteger.Parse(HField.Text),
+                    BigInteger.Parse(XField.Text));
                 var (v, r, s) = sc.Check(message);
 
                 RLabel.Text = r.ToString();
@@ -102,15 +99,15 @@ namespace DSA_WPF
                     StatusLabel.Foreground = Brushes.Red;
                 }
             }
+            catch (LogicException exception)
+            {
+                MessageBox.Show(exception.Message);
+            }
             catch (Exception exception)
             {
                 StatusLabel.Content = "Подпись не верна";
                 StatusLabel.Foreground = Brushes.Red;
             }
-            
-
-
-
         }
     }
 }

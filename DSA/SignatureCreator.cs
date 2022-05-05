@@ -1,19 +1,18 @@
-﻿using System.Diagnostics;
-using System.Numerics;
+﻿using System.Numerics;
 
 namespace DSA
 {
     public class SignatureCreator
     {
-        public int Q { get; set; }
-        public int P { get; set; }
-        public int H { get; set; }
-        public int X { get; set; }
+        public BigInteger Q { get; set; }
+        public BigInteger P { get; set; }
+        public BigInteger H { get; set; }
+        public BigInteger X { get; set; }
 
-        private int G { get; set; }
-        private int Y { get; set; }
+        private BigInteger G { get; set; }
+        private BigInteger Y { get; set; }
 
-        public SignatureCreator(int q, int p, int h, int x)
+        public SignatureCreator(BigInteger q, BigInteger p, BigInteger h, BigInteger x)
         {
             if (!IsPrime(q))
                 throw new LogicException("q должно быть простым числом");
@@ -25,7 +24,7 @@ namespace DSA
                 throw new LogicException("q должно являться делителем (p - 1)");
             P = p;
 
-            if (h <= 1 && h >= (p - 1))
+            if (h <= 1 || h >= p - 1)
                 throw new LogicException("h должно быть в интервале от 1 до (p - 1)");
             H = h;
 
@@ -33,7 +32,7 @@ namespace DSA
             if (G <= 1)
                 throw new LogicException("h образует g меньше или равное 1");
 
-            if (x <= 0 && x >= q)
+            if (x <= 1 || x >= q)
                 throw new LogicException("x должно быть в интервале от 0 до q");
             X = x;
 
@@ -42,20 +41,20 @@ namespace DSA
 
         public (byte[] data, int hash, int r, int s) Create(byte[] message, int k)
         {
-            int hash = GetHash(message);
+            BigInteger hash = GetHash(message);
 
             if (k <= 0 && k >= Q)
                 throw new LogicException("k должно быть в интервале от 0 до q");
-
-            int r = Pow(G, k, P) % Q;
-            int s = ((hash + X * r) * Pow(k, Q-2, Q)) % Q;
+            
+            var r = Pow(G, k, P) % Q;
+            var s = ((hash + X * r) * Pow(k, Q-2, Q)) % Q;
 
             if (s == 0)
                 throw new LogicException("s получилось равным 0");
             if (r == 0)
                 throw new LogicException("r получилось равным 0");
 
-            return (TextAnalyzer.Concatenate(message, r, s), hash, r, s);
+            return (TextAnalyzer.Concatenate(message, (int)r, (int)s), (int)hash, (int)r, (int)s);
         }
 
         public (int v, int r, int s) Check(byte[] data)
@@ -69,12 +68,12 @@ namespace DSA
             var u2 = (r * w) % Q;
             var v = ((Pow(G, u1, P) * Pow(Y, u2, P)) % P) % Q;
 
-            return (v, r, s);
+            return ((int)v, r, s);
         }
 
-        private int GetHash(byte[] data)
+        private BigInteger GetHash(byte[] data)
         {
-            int h = 100;
+            BigInteger h = 100;
 
             foreach (var b in data)
             {
@@ -84,12 +83,12 @@ namespace DSA
             return h;
         }
 
-        private static bool IsPrime(int number)
+        private static bool IsPrime(BigInteger number)
         {
             if (number == 1) return false;
             if (number == 2) return true;
 
-            var limit = Math.Ceiling(Math.Sqrt(number));
+            var limit = Math.Ceiling(Math.Sqrt((int)number));
 
             for (var i = 2; i <= limit; ++i)
                 if (number % i == 0)
@@ -97,7 +96,7 @@ namespace DSA
             return true;
         }
 
-        private static int Pow(int value, int power, int mod)
+        private static BigInteger Pow(BigInteger value, BigInteger power, BigInteger mod)
         {
             BigInteger a1 = value;
             BigInteger z1 = power;
@@ -114,7 +113,7 @@ namespace DSA
                 x = (x * a1) % mod;
             }
 
-            return (int)x;
+            return x;
         }
     }
 }
